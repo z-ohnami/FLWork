@@ -5,8 +5,7 @@ import flash.events.Event;
 import flash.Lib;
 
 
-import sample.Act001;
-import sample.Act002;
+import sample.*;
  
 class Main extends Sprite 
 {
@@ -28,7 +27,8 @@ class Main extends Sprite
 		// (your code here)
 		
 //		var work = new Act001();
-		var work = new Act002();
+//		var work = new Act002();
+		var work = new Act005();
 		addChild(work);
 		
 		// Stage:

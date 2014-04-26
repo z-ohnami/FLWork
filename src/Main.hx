@@ -28,7 +28,9 @@ class Main extends Sprite
 		
 //		var work = new Act001();
 //		var work = new Act002();
-		var work = new Act005();
+//		var work = new Act005();
+//		var work = new Act106();
+		var work = new Act107();
 		addChild(work);
 		
 		// Stage:

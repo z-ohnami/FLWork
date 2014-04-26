@@ -4,10 +4,6 @@ import flash.display.Sprite;
 import flash.text.TextField;
 import flash.events.Event;
 
-/**
- * ...
- * @author 
- */
 class Act001 extends Sprite
 {
 
@@ -19,7 +15,7 @@ class Act001 extends Sprite
 		addEventListener(Event.ADDED_TO_STAGE, added);
 	}
 	
-	private function added(event)
+	private function added(event:Event)
 	{
 		removeEventListener(Event.ADDED_TO_STAGE, added);
 

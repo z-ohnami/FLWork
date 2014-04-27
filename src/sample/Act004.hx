@@ -19,7 +19,7 @@ class Act004 extends Sprite
 		super();
 		addEventListener(Event.ADDED_TO_STAGE, init);
 	}
-	
+
 	private function init(event:Event)
 	{
 		removeEventListener(Event.ADDED_TO_STAGE, init);

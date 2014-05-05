@@ -26,4 +26,9 @@ FLWork
 
 [天気](http://www.drk7.jp/weather/)
 
+## Stage.3 UI
+- Act301 TileSheetを使う
+
+## Stage.4 Animation
+- Act401 図形を動かす
 

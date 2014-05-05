@@ -25,7 +25,7 @@ class Main extends Sprite
 		inited = true;
 
 		// (your code here)
-		
+
 //		var work = new Act001();
 //		var work = new Act002();
 //		var work = new Act005();
@@ -39,6 +39,10 @@ class Main extends Sprite
 //		var work = new Act202();
 //		var work = new Act203();
 		var work = new Act206();
+//		var work = new Act301();
+//		var work = new Act401();
+
+
 		addChild(work);
 		
 		// Stage:
@@ -70,8 +74,9 @@ class Main extends Sprite
 	public static function main() 
 	{
 		// static entry point
-		Lib.current.stage.align = flash.display.StageAlign.TOP_LEFT;
-		Lib.current.stage.scaleMode = flash.display.StageScaleMode.NO_SCALE;
+//		Lib.current.stage.align = flash.display.StageAlign.TOP_LEFT;
+//		Lib.current.stage.scaleMode = flash.display.StageScaleMode.NO_SCALE;
+//		Lib.current.stage.scaleMode = flash.display.StageScaleMode.EXACT_FIT;
 		Lib.current.addChild(new Main());
 	}
 }

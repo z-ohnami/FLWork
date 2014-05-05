@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="301.png">
+	<!-- Created with Adobe Flash Professional version 13.1.0.226 -->
+	<!-- http://www.adobe.com/products/flash.html -->
+	<SubTexture name="bg.png インスタンス 1" x="0" y="0" width="640" height="980" pivotX="0" pivotY="0"/>
+	<SubTexture name="button1.png インスタンス 1" x="640" y="0" width="210" height="120" pivotX="0" pivotY="0"/>
+	<SubTexture name="button2.png インスタンス 1" x="640" y="120" width="210" height="120" pivotX="0" pivotY="0"/>
+	<SubTexture name="button3.png インスタンス 1" x="640" y="240" width="210" height="120" pivotX="0" pivotY="0"/>
+</TextureAtlas>

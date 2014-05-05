@@ -3,12 +3,14 @@ package sample;
 import flash.display.Sprite;
 import flash.events.Event;
 import flash.events.IOErrorEvent;
+import flash.events.SecurityErrorEvent;
 
 import flash.display.BitmapData;
 import flash.display.Bitmap;
 import openfl.Assets;
 
 import flash.display.Loader;
+import flash.system.LoaderContext;
 import flash.net.URLRequest;
 
 class Act201 extends Sprite
@@ -30,10 +32,23 @@ class Act201 extends Sprite
 //		var requestUrl:String = "http://192.168.24.24/img/my-kamon1.png";
 		var requestUrl:String = "http://192.168.24.24/img/hana.jpg";
 
+		trace("load start");
+		var context:LoaderContext = new LoaderContext(true);
+		
 		var loader = new Loader();
 		loader.contentLoaderInfo.addEventListener(Event.COMPLETE, onComplete);
 		loader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, onLoadError);
-		loader.load(new URLRequest(requestUrl));
+		loader.contentLoaderInfo.addEventListener(SecurityErrorEvent.SECURITY_ERROR, onLoadSecurityError);
+		var req:URLRequest = new URLRequest(requestUrl);
+		trace("load action");
+		try {
+			loader.load(req,context);
+		} catch( msg : String ) {
+			trace("Error occurred: " + msg);
+		}
+
+
+		trace("load actioned");
 
 	}
 
@@ -53,6 +68,12 @@ class Act201 extends Sprite
 	{
 		trace("error occured.");
 		trace(event.currentTarget.content);
+	}
+
+	private function onLoadSecurityError(event:SecurityErrorEvent):Void
+	{
+		trace("error occured.");
+		trace(event.text);
 	}
 
 }

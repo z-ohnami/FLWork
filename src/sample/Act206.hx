@@ -12,7 +12,10 @@ import openfl.Assets;
 import flash.net.URLLoader;
 import flash.net.URLRequest;
 import flash.text.TextField;
+import flash.text.TextFormat;
+import flash.text.TextFormatAlign;
 
+import flash.system.Capabilities;
 
 class Act206 extends Sprite
 {
@@ -29,6 +32,8 @@ class Act206 extends Sprite
 	{
 		removeEventListener(Event.ADDED_TO_STAGE, init);
 
+		trace(Capabilities.language);
+
 		var requestUrl:String = "http://www.drk7.jp/weather/xml/13.xml";
 
 		var loader = new URLLoader();
@@ -43,38 +48,26 @@ class Act206 extends Sprite
 		var areaName:String = '東京地方';
 		var date:String = getCurrentDate();
 
-		var weather:Xml = Xml.createDocument();
+		var weatherText:String = "【" + areaName + "】";
+		var fastXml = new haxe.xml.Fast(xml);
 
-		for (pref in xml.elementsNamed("pref")) {
-			for (area in pref.elementsNamed("area")) {
-				if(area.get("id") == areaName) {
-					for (info in area.elementsNamed("info")) {
-						if(info.get("date") == date) {
-							weather = info;
-							break;
+		for (elem in fastXml.elements) {
+			if(elem.name == "pref") {
+				for (area in elem.elements) {
+					if(area.name == "area" && area.att.id == areaName) {
+						for (tag in area.nodes.info) {
+							if(tag.name == "info" && tag.att.date == date) {
+								weatherText += '\n' + tag.node.weather.innerData + '\n' + tag.node.wave.innerData;
+							}
 						}
 					}
 				}
+
 			}
 		}
 
-		var condition:String = "";
-		var wave:String = "";
+		return weatherText;
 
-		for (node in weather) {
-			var nodeName:String = node.nodeName;
-			if(nodeName == "weather") {
-				condition = node.nodeValue;
-			}
-			if(nodeName == "wave") {
-				wave = node.nodeValue;
-			}
-		}
-
-		return areaName + ' : \n ' + condition + ' ' + wave;
-
-//		return areaName + ' : \n ' + w.elementsNamed("weather").firstElement().nodeValue + ' ' + w.elementsNamed("wave").nodeValue;
-//		return areaName + ' : \n ' + w.weather + ' ' + w.elementsNamed("wave").firstChild().nodeValue();
 	}
 
 	private function getCurrentDate():String
@@ -86,16 +79,27 @@ class Act206 extends Sprite
 
 	private function onComplete(event:Event):Void
 	{
-		trace("loaded" + cast(event.currentTarget.data, String));
 
 		var data:String = cast(event.currentTarget.data, String);
 		var xml:Xml = Xml.parse(data).firstElement();
 
+		var font = Assets.getFont ("font/HanaMinA.ttf");
+
+		var format:TextFormat = new TextFormat();
+		format.align = TextFormatAlign.CENTER;
+		format.size = 20;
+		format.bold = true;
+		format.font = font.fontName;
+
 		var text:TextField = new TextField();
 		text.text = getTodayWeatherText(xml);
-		text.width = 200;
+		text.width = stage.stageWidth;
+		text.textColor = 0x000000;
 		text.x = (stage.stageWidth - text.width) / 2;
 		text.y = (stage.stageHeight - text.height) / 2;
+
+		text.setTextFormat(format);
+
 		addChild(text);
 
 	}

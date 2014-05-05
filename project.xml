@@ -3,14 +3,15 @@
 	<!-- NMML reference: https://gist.github.com/1763850 -->
 	
 	<!-- metadata, make sure 'package' is at least 3 segments (ie. com.mycompany.myproject) -->
-	<meta title="FLWork" package="FLWork" version="1.0.0" company="" />
+	<meta title="FLWork" package="example.FLWork" version="1.0.0" company="" />
 	
 	<!-- output -->
 	<app main="Main" file="FLWork" path="bin" />
 	
 	<window background="#FFFFFF" fps="60" />
-	<window width="320" height="480" unless="mobile" />
-	<window orientation="landscape" vsync="false" antialiasing="0" if="cpp" />
+	<window width="320" height="480" />
+<!-- 	<window width="320" height="480" unless="mobile" /> -->
+<!-- 	<window orientation="landscape" vsync="false" antialiasing="0" if="cpp" /> -->
 	
 	<!-- classpath, haxe libs -->
 	<source path="src" />
@@ -20,8 +21,12 @@
 	<!-- assets -->
 	<icon path="assets/openfl.svg" />
 	<assets path="assets/img" rename="img" />
+	<assets path="assets/font" rename="font" />
 	
 	<!-- optimize output
 	<haxeflag name="-dce full" /> -->
-	
+
+	<android install-location="preferExternal" />
+	<android permission="android.permission.INTERNET"/>
+
 </project>
